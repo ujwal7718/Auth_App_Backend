@@ -11,7 +11,9 @@ console.log("DB URL:", process.env.MONGODB_URL);
 
 const user = require("./routes/user");
 app.use("/api/v1", user);
-
+app.post("/test", (req, res) => {
+  res.send("Test route working");
+});
 app.listen(PORT,()=> {
     console.log(`App is listening at ${PORT}`);
 })
