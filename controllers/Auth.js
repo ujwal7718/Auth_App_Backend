@@ -49,7 +49,7 @@ exports.login = async (req,res)=>{
                 message:'Please fill all the details',
             });
         }
-        const user = await User.findOne({email}); 
+        let user = await User.findOne({email}); 
         if(!user){
             return res.status(401).json({
                 success:false,
@@ -67,6 +67,7 @@ exports.login = async (req,res)=>{
                                 {
                                     expiresIn:"2h",
                                 });
+            user = user.toObject();                                
             user.token=token;
             user.password=undefined;
             const options = {
